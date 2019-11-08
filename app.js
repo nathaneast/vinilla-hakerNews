@@ -7,7 +7,6 @@ $.ajax({
     .done(function (items) {
         for (var i = 0; 10 > i; i++) {
             $.get(`https://hacker-news.firebaseio.com/v0/item/${items[i]}.json?print=pretty`, function (item) {
-                console.log(item);
                 var li = document.createElement("li");
                 var firstLine = document.createElement("div");
                 var secondLine = document.createElement("div");
@@ -19,23 +18,33 @@ $.ajax({
                 var time = document.createElement("span");
                 var coment = document.createElement("span");
 
+                firstLine.classList.add("content-line");
+                secondLine.classList.add("content-line");
+                title.classList.add("content-title");
+                num.classList.add("content-num");
+                url.classList.add("content-others");
+                score.classList.add("content-others");
+                by.classList.add("content-others");
+                time.classList.add("content-others");
+                coment.classList.add("content-others");
+
+                num.innerText = n+". ";
+                title.innerText = item.title+" ";
+                url.innerText = item.url;
                 contents.appendChild(li);
                 li.appendChild(firstLine);
                 li.appendChild(secondLine);
-                num.innerText = n+". ";
                 firstLine.appendChild(num);
-                title.innerText = item.title;
                 firstLine.appendChild(title);
-                url.innerText = item.url;
                 firstLine.appendChild(url);
 
                 score.innerText = item.score+" points ";
-                secondLine.appendChild(score);
                 by.innerText = "by "+item.by;
-                secondLine.appendChild(by);
                 time.innerText = " "+item.time
-                secondLine.appendChild(time);
                 coment.innerText = " "+item.descendants+" coments"
+                secondLine.appendChild(score);
+                secondLine.appendChild(by);
+                secondLine.appendChild(time);
                 secondLine.appendChild(coment);
                 n++;
             });
