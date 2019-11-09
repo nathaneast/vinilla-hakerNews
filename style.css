@@ -4,7 +4,7 @@ body{
 }
 
 .container{
-    width:900px;
+    width: 800px;
     background-color: rgb(246, 246, 239);
 }
 
@@ -12,26 +12,31 @@ body{
 nav{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: rgb(255, 102, 0);
+    height: 20px;
 }
 
-nav div{
-    margin: 2px 1px;
-}
+/* nav .menu{
+    display: flex;
+} */
 
 nav ul{
-    list-style: none;
     display: flex;
-    padding: 0px;
+    align-items: center;
+    list-style: none;
+    padding: 2px;
     margin: 0px;
 }
 
 nav ul li{
     font-size: 12px;
+    padding: 0px 5px;
+    line-height: 10px;
 }
 
-.nav-space{
-    padding-right: 5px;
+.menu-bar{
+    border-left: 1px solid black;
 }
 
 .headName{
@@ -40,35 +45,49 @@ nav ul li{
 }
 
 .logo{
-    border: .8px solid white;
+    border: .9px solid white;
     color: white;
     font-weight: bold;
-    padding: 0px 4px;
+    padding: 2px 4px;
 }
 
 /* section */
 .contents{
     list-style: none;
-    margin: 5px 7px;
+    margin: 5px 3px;
     padding: 0px;
 }
 
-.content-line{
-    /* margin: 0px; */
+.posts{
+    display: flex;
+    line-height: 10px;
+    margin: 7px 0px;
 }
 
-.content-title{
-    font-size: 12px;
+.postsNum{
+    width: 20px;
+    text-align: right;
 }
 
-.content-num{
+.postsNum-num{
     font-size: 12px;
     color: gray;
 }
 
-.content-others{
+.postsText-title{
+    font-size: 12px;
+}
+
+
+.postsText-others{
     font-size: 8px;
     color: gray;
+}
+
+.addViewContents{
+    margin: 0px 0px 7px 25px;
+    /* margin-bottom: 5px; */
+    font-size: 12px;
 }
 
 /* footer */
@@ -76,18 +95,37 @@ footer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    /* justify-contents: center; */
+    border-top: 1px solid rgb(255, 102, 0);
 }
 
 footer ul{
     list-style: none;
     display: flex;
+    margin: 13px 0px;
 }
 
 footer ul li{
-    margin-right: 10px;
+    padding: 0px 5px;
+    font-size: 10px;
+    border-left: 1px solid rgb(185, 183, 183);
+    line-height: 10px;
+}
+
+footer ul li:first-child{
+    border-left: none;
 }
 
 .search{
-    width: 110px;
+    margin-bottom: 10px;
+}
+
+.searchText{
+    color: gray;
+    font-size: 12px;
+}
+
+.searchInput{
+    width: 100px;
+    height: 11px;
 }
