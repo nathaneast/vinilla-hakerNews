@@ -1,11 +1,13 @@
 var contents = document.querySelector(".contents");
 var n = 1;
+var space = "\u00A0";
+
 $.ajax({
     method: "GET",
     url: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
 })
     .done(function (items) {
-        for (var i = 0; 30 > i; i++) {
+        for (var i = 0; i < 30; i++) {
             $.get(`https://hacker-news.firebaseio.com/v0/item/${items[i]}.json?print=pretty`, function (item) {
                 var li = document.createElement("li");
                 var postsNum = document.createElement("div");
@@ -21,7 +23,6 @@ $.ajax({
                 var time = document.createElement("li");
                 var hide = document.createElement("li");
                 var coment = document.createElement("li");
-                var space = "\u00A0";
 
                 // postsNum , postsText
                 li.classList.add("posts");
@@ -30,12 +31,12 @@ $.ajax({
                 postsInfo.classList.add("postsInfo");
                 title.classList.add("postsText-title");
                 title.classList.add("cursorEffect");
-                url.classList.add("postsText-others");
-                score.classList.add("postsText-others");
-                by.classList.add("postsText-others");
-                time.classList.add("postsText-others");
-                hide.classList.add("postsText-others");
-                coment.classList.add("postsText-others");
+                url.classList.add("postsText-deco");
+                score.classList.add("postsText-deco");
+                by.classList.add("postsText-deco");
+                time.classList.add("postsText-deco");
+                hide.classList.add("postsText-deco");
+                coment.classList.add("postsText-deco");
 
                 // firstLine , secondLine
                 num.innerText = n + "." + space;
@@ -58,11 +59,12 @@ $.ajax({
                 var hideEle = document.createElement("span");
                 var comentEle = document.createElement("span");
                 scoreEle.innerText = item.score + " points ";
-                byEle.innerText = item.by;
                 by.innerText = "by" + space;
+                byEle.innerText = item.by;
                 TimeEle.innerText = item.time;
                 hideEle.innerText = "hide";
                 comentEle.innerText = item.descendants + " coments";
+                url.classList.add("hoverEffect");
                 byEle.classList.add("hoverEffect");
                 TimeEle.classList.add("hoverEffect");
                 hideEle.classList.add("hoverEffect");
@@ -82,3 +84,4 @@ $.ajax({
             });
         }
     });
+    
