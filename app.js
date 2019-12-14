@@ -2,24 +2,17 @@ var contents = document.querySelector(".contents");
 var n = 1;
 var space = "\u00A0"
 
-$.ajax({
-    method: "GET",
-    url: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
-})
-    .done(function (datas) {
-        console.log(datas);
-        for (var i = 0; i < 10; i++) {
-            $.ajax({
-                method: "GET",
-                url: `https://hacker-news.firebaseio.com/v0/item/${datas[i]}.json?print=pretty`,
-                async: false
-            })
-                .done(function (data) {
-                    console.log(data);
-                    viewData(data);
-                })
-        }
-    });
+$.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty', list => {
+  console.log(list);
+  list.forEach( (item, index) =>{
+    if(list[index] === item) {
+        console.log(list[index], item);
+        $.get(`https://hacker-news.firebaseio.com/v0/item/${item}.json?print=pretty`, data =>{
+            viewData(data);
+        });
+    }
+  });
+});
 
 function viewData(data) {
     // 태그 생성
