@@ -3,44 +3,19 @@ var n = 1;
 var space = "\u00A0"
 
 
-// $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty', () => {
-// })
-//     .done(list => {
-//         console.log(list);
-//         // a.forEach( item => {
-//             // $.get(`https://hacker-news.firebaseio.com/v0/item/${item}.json?print=pretty`, data => {
-//             //     console.log(data);
-//             //     // viewData(data);
-//             // })
-//         // })
-
-//     })
-
-var getList = callbackFn => {
-    $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty', () => {
-    })
-        .done( list => {
-            console.log(list);
-            for (var i = 0; i < 20; i++) {
-                callbackFn(list[i], i);
-            }
-        })
-
+var getItem = item => {
+    return $.get(`https://hacker-news.firebaseio.com/v0/item/${item}.json?print=pretty`)
 }
 
-
-getList(function (item, i) {
-    $.when($.get(`https://hacker-news.firebaseio.com/v0/item/${item}.json?print=pretty`), () => {
-    })
-        .done(data => {
-            var {2: {responseJSON: info} } = data;
-            console.log(i);
-            viewData(info);
-        })
-}
-)
-
-
+$.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
+    .done(async list => {
+        console.log(list);
+        for (var i = 0; i < 30; i++) {
+            var item = await getItem(list[i]);
+            console.log(item, i);
+            viewData(item);
+        }
+    });
 
 
 function viewData(data) {
