@@ -8,21 +8,17 @@ function getApi() {
 
     var getItem = function () {
         if (i < 30) {
-            $.get(`https://hacker-news.firebaseio.com/v0/item/${topArr[i++]}.json?print=pretty`)
-                .done(item => {
-                    console.log(item, i);
-                    viewData(item);
-                    getItem();
-                })
+            $.get(`https://hacker-news.firebaseio.com/v0/item/${topArr[i++]}.json?print=pretty`, item => {
+                viewData(item);
+                getItem();
+            })
         }
     }
 
-    $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
-        .done(list => {
-            topArr = list;
-            console.log(topArr);
-            getItem();
-        })
+    $.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty', list => {
+        topArr = list;
+        getItem();
+    })
 }
 getApi();
 
